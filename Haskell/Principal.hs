@@ -7,6 +7,17 @@ type Relacao = [Char]
 type Contato = (Nome, Numero, Endereco, Relacao)
 type Agenda = [Contato]
 
+nome :: Contato -> Nome
+nome (a, _, _, _) = a
+
+numero :: Contato -> Numero
+numero (_, a, _, _) = a
+
+endereco :: Contato -> Endereco
+endereco (_, _, a, _) = a
+
+relacao :: Contato -> Relacao
+relacao (_, _, _, a) = a
 main :: IO ()
 main = do
  let agenda = []
