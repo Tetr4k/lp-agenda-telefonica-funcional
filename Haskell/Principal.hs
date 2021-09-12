@@ -18,6 +18,10 @@ endereco (_, _, a, _) = a
 
 relacao :: Contato -> Relacao
 relacao (_, _, _, a) = a
+
+strContato :: Contato -> [Char]
+strContato contato = nome contato ++ " " ++ show (numero contato) ++ " " ++ endereco contato ++ " " ++ relacao contato ++ "\n"
+
 main :: IO ()
 main = do
  let agenda = []
