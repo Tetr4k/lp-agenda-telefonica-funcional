@@ -19,12 +19,13 @@ endereco (_, _, a, _) = a
 relacao :: Contato -> Relacao
 relacao (_, _, _, a) = a
 
-strContato :: Contato -> [Char]
-strContato contato = nome contato ++ " " ++ show (numero contato) ++ " " ++ endereco contato ++ " " ++ relacao contato ++ "\n"
+listar :: Agenda -> [Contato]
+listar [] = []
+listar agenda = head agenda : listar (tail agenda)
 
-listar :: Agenda -> [Char]
-listar [] = ""
-listar agenda = strContato (head agenda) ++ listar (tail agenda) 
+inserir :: Contato -> Agenda -> Agenda
+inserir contato [] = [contato]
+inserir contato agenda = agenda ++ [contato]
 
 main :: IO ()
 main = do
