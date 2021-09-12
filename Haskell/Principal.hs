@@ -22,6 +22,10 @@ relacao (_, _, _, a) = a
 strContato :: Contato -> [Char]
 strContato contato = nome contato ++ " " ++ show (numero contato) ++ " " ++ endereco contato ++ " " ++ relacao contato ++ "\n"
 
+listar :: Agenda -> [Char]
+listar [] = ""
+listar agenda = strContato (head agenda) ++ listar (tail agenda) 
+
 main :: IO ()
 main = do
  let agenda = []
