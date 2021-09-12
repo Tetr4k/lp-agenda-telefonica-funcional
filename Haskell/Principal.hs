@@ -27,14 +27,12 @@ inserir :: Contato -> Agenda -> Agenda
 inserir contato [] = [contato]
 inserir contato agenda = agenda ++ [contato]
 
-main :: IO ()
-main = do
- let agenda = []
+agenda = inserir ("Fulano", 99999999, "Rua A", "UFF") []
+agenda2 = inserir ("Ciclano", 88888888, "Rua B", "Cederj") agenda
+agenda3 = inserir ("Beltrano", 88889999, "Rua C", "Infância") agenda2
 
--- Inserir o Contato "Fulano", 99999999, "Rua A", "UFF";
--- Inserir o Contato "Ciclano", 88888888, "Rua B", "Cederj";
--- Inserir o Contato "Beltrano", 88889999, "Rua C", "Infância";
 -- Inserir o Contato "Fulano", 77777777, "Rua D", none;
 -- Remover o Contato "Ciclano";
-
- putStrLn ("Contatos" ++ listar agenda)
+main :: IO ()
+main = do
+ putStrLn (show (listar agenda3))
