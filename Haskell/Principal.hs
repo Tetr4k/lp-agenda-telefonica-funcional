@@ -23,6 +23,12 @@ listar :: Agenda -> [Contato]
 listar [] = []
 listar agenda = head agenda : listar (tail agenda)
 
+buscar :: Nome -> Agenda -> Contato
+buscar nome [] = ("", 0, "", "")
+buscar nomeContato agenda
+ | nomeContato == nome (head agenda) = head agenda
+ | otherwise = buscar nomeContato (tail agenda)
+
 inserir :: Contato -> Agenda -> Agenda
 inserir contato [] = [contato]
 inserir contato agenda = agenda ++ [contato]
