@@ -23,10 +23,17 @@ listar :: Agenda -> [Contato]
 listar [] = []
 listar agenda = head agenda : listar (tail agenda)
 
+prefixo :: Nome -> Nome -> Bool
+prefixo [] nomeBase = True
+prefixo nomeTeste [] = False
+prefixo nomeTeste nomeBase
+ | head nomeTeste == head nomeBase = prefixo (tail nomeTeste) (tail nomeBase) -- toUpper
+ | otherwise = False
+
 buscar :: Nome -> Agenda -> Contato
 buscar nome [] = ("", 0, "", "")
 buscar nomeContato agenda
- | nomeContato == nome (head agenda) = head agenda
+ | prefixo nomeContato (nome (head agenda)) = head agenda
  | otherwise = buscar nomeContato (tail agenda)
 
 inserir :: Contato -> Agenda -> Agenda
