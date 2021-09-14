@@ -54,9 +54,11 @@ inserir contato agenda
  | existe (nome contato) agenda = alterar contato agenda
  | otherwise = agenda ++ [contato]
 
-agenda = inserir ("Fulano", 99999999, "Rua A", "UFF") []
-agenda2 = inserir ("Ciclano", 88888888, "Rua B", "Cederj") agenda
-agenda3 = inserir ("Beltrano", 88889999, "Rua C", "Infância") agenda2
+remover :: Nome -> Agenda -> Agenda
+remover nomeContato [] = []
+remover nomeContato agenda
+ | nomeContato == nome (head agenda) = tail agenda
+ | otherwise = head agenda : remover nomeContato (tail agenda)
 
 -- Inserir o Contato "Fulano", 77777777, "Rua D", none;
 -- Remover o Contato "Ciclano";
