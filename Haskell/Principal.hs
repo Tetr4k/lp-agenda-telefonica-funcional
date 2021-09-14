@@ -19,10 +19,6 @@ endereco (_, _, a, _) = a
 relacao :: Contato -> Relacao
 relacao (_, _, _, a) = a
 
-listar :: Agenda -> [Contato]
-listar [] = []
-listar agenda = head agenda : listar (tail agenda)
-
 prefixo :: Nome -> Nome -> Bool
 prefixo [] nomeBase = True
 prefixo nomeTeste [] = False
@@ -59,6 +55,13 @@ remover nomeContato [] = []
 remover nomeContato agenda
  | nomeContato == nome (head agenda) = tail agenda
  | otherwise = head agenda : remover nomeContato (tail agenda)
+
+strContato :: Contato -> [Char]
+strContato (nomeContato, numeroContato, enderecoContato, relacaoContato) = nomeContato ++ " " ++ show numeroContato ++ " " ++ enderecoContato ++ " " ++ relacaoContato
+
+listar :: Agenda -> [Char]
+listar [] = []
+listar agenda = strContato(head agenda) ++ "\n" ++ listar (tail agenda)
 
 main :: IO ()
 main = do
