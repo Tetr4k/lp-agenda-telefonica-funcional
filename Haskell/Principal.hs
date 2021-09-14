@@ -10,15 +10,6 @@ type Agenda = [Contato]
 nome :: Contato -> Nome
 nome (a, _, _, _) = a
 
-numero :: Contato -> Numero
-numero (_, a, _, _) = a
-
-endereco :: Contato -> Endereco
-endereco (_, _, a, _) = a
-
-relacao :: Contato -> Relacao
-relacao (_, _, _, a) = a
-
 prefixo :: Nome -> Nome -> Bool
 prefixo [] nomeBase = True
 prefixo nomeTeste [] = False
