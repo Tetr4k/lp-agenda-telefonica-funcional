@@ -60,8 +60,11 @@ remover nomeContato agenda
  | nomeContato == nome (head agenda) = tail agenda
  | otherwise = head agenda : remover nomeContato (tail agenda)
 
--- Inserir o Contato "Fulano", 77777777, "Rua D", none;
--- Remover o Contato "Ciclano";
 main :: IO ()
 main = do
- putStrLn (show (listar agenda3))
+ let agenda1 = inserir ("Fulano", 99999999, "Rua A", "UFF") []
+ let agenda2 = inserir ("Ciclano", 88888888, "Rua B", "Cederj") agenda1
+ let agenda3 = inserir ("Beltrano", 88889999, "Rua C", "Infancia") agenda2
+ let agenda4 = inserir ("Fulano", 77777777, "Rua D", "UFF") agenda3
+ let agenda5 = remover "Ciclano" agenda4
+ putStrLn (listar agenda5)
