@@ -36,6 +36,17 @@ buscar nomeContato agenda
  | prefixo nomeContato (nome (head agenda)) = head agenda
  | otherwise = buscar nomeContato (tail agenda)
 
+existe :: Nome -> Agenda -> Bool 
+existe nomeContato [] = False
+existe nomeContato agenda
+ | nomeContato == nome (head agenda) = True
+ | otherwise = existe nomeContato (tail agenda)
+
+alterar :: Contato -> Agenda -> Agenda
+alterar contato [] = []
+alterar contato agenda
+ | nome contato == nome (buscar (nome contato) agenda) = contato : tail agenda
+ | otherwise = head agenda : alterar contato (tail agenda)
 inserir :: Contato -> Agenda -> Agenda
 inserir contato [] = [contato]
 inserir contato agenda = agenda ++ [contato]
