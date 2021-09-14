@@ -31,7 +31,7 @@ prefixo nomeTeste nomeBase
  | otherwise = False
 
 buscar :: Nome -> Agenda -> Contato
-buscar nome [] = ("", 0, "", "")
+buscar nomeContato [] = ("", 0, "", "")
 buscar nomeContato agenda
  | prefixo nomeContato (nome (head agenda)) = head agenda
  | otherwise = buscar nomeContato (tail agenda)
