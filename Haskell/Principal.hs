@@ -32,7 +32,7 @@ existe nomeContato agenda
 alterar :: Contato -> Agenda -> Agenda
 alterar contato [] = []
 alterar contato agenda
- | nome contato == nome (buscar (nome contato) agenda) = contato : tail agenda
+ | nome contato == nome (head agenda) = contato : tail agenda
  | otherwise = head agenda : alterar contato (tail agenda)
 
 inserir :: Contato -> Agenda -> Agenda
