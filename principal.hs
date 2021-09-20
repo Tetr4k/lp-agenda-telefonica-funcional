@@ -1,5 +1,5 @@
 module Principal where
-
+import Data.Char
 type Nome = [Char]
 type Numero = Int
 type Endereco = [Char]
@@ -14,7 +14,7 @@ prefixo :: Nome -> Nome -> Bool
 prefixo [] nomeBase = True
 prefixo nomeTeste [] = False
 prefixo nomeTeste nomeBase
- | head nomeTeste == head nomeBase = prefixo (tail nomeTeste) (tail nomeBase) -- toUpper
+ | toUpper (head nomeTeste) == toUpper (head nomeBase) = prefixo (tail nomeTeste) (tail nomeBase)
  | otherwise = False
 
 buscar :: Nome -> Agenda -> Contato
@@ -32,7 +32,7 @@ existe nomeContato agenda
 alterar :: Contato -> Agenda -> Agenda
 alterar contato [] = []
 alterar contato agenda
- | nome contato == nome (buscar (nome contato) agenda) = contato : tail agenda
+ | nome contato == nome (head agenda) = contato : tail agenda
  | otherwise = head agenda : alterar contato (tail agenda)
 
 inserir :: Contato -> Agenda -> Agenda
